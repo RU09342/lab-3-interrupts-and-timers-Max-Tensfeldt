@@ -1,12 +1,31 @@
-# Button Based Delay
-Now that you have begun to familiarize yourself with the TIMER modules, why don't we make an interesting change to our code from the last lab.
+Button Based Delay
+Max Tensfeldt
+Intro to Embedded - Section 2
 
-## Task
-Setup your microcontroller to initially blink and LED at a rate of 10Hz upon restarting or powering up. Then utilizing one of the buttons on board, a user should be able to set the delay or blinking rate of the LED by holding down a button. The duration in which the button is depressed should then become the new rate at which the LED blinks. As previously stated, you most likely will want to take advantage of the fact that TIMER modules exist and see if you can let them do a bulk of the work for you.
+The task of Button Based Delay was to control the toggle time of an LED with a button. The length of time that the button is held is the set time that the LED will toggle at. The implementation was similar via every board. When the button is held for longer than the hex value FFFF, the overflow is incremented and used later.
 
-### Extra Work
-## Reset Button
-What is a piece of electronics without a reset button? Instead of relying on resetting your processor using the built in reset circuitry, why not instead use another button to reset the rate back to 10Hz.
+* MSP430G2553
+LED = P1.0 and P1.6
+Button = P1.3
+Simply put, when button P1.3 is pressed, LED P1.0 and P1.6 toggles high and low. When the overflow integer is incremented the first time, P1.6 will go high
 
-## Button Based Hertz
-Most likely using two buttons, what if instead of making a delay loop based on the time, the user could instead enter a mode where the number of times they pressed the button would become the number in Hz of the blinking rate? How do you think you would implement that with just one button?
+* MSP430FR6989
+LED = P1.0 and P9.7
+Button = P1.1
+When button P1.1 is pressed, LED P1.0 toggles high and low. When the overflow integer is incremented the first time, P9.7 will go high; also, whenever the overflow is decremented in the blinking stage, the same LED will toggle.
+
+* MSP430FR2311
+LEDs = P1.0 and P2.0
+Button = P1.1
+When button P1.1 is pressed, LED P1.0 toggles high and low. When the overflow integer is incremented the first time, P2.0 will go high; also, whenever the overflow is decremented in the blinking stage, the same LED will toggle.
+
+
+* MSP430FR5994
+LEDs used were P1.0 and P1.1
+Button = P5.5
+When button P5.5 is pressed, LED P1.0 toggles high and low. When the overflow integer is incremented the first time, P1.1 will go high; also, whenever the overflow is decremented in the blinking stage, the same LED will toggle.
+
+* MSP430F5529
+LED = P1.0 and P4.7
+Button = P1.1
+When button P1.1 is pressed, LED P1.0 toggles high and low. When the overflow integer is incremented the first time, P4.7 will go high; also, whenever the overflow is decremented in the blinking stage, the same LED will toggle.
